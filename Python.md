@@ -205,3 +205,26 @@ df1.to_csv("hello.csv")
 ```
 
 Performing different kinds of operations using combination of different functions and methods.....
+
+## Joinig Dataframe
+
+Inner Join
+```
+newdf = df1.merge(df2,on="commoncolumnname"),suffixes=('_df1','_df2')
+```
+One to Many relations - same syntax
+```
+newdf = df1.merge(df2,on=["commoncolumnname1","commoncolumnname2"])\
+        .merge(df3,on="commoncolumnname3")
+```
+
+Left Merge
+
+```
+newdf=df1.merge(df2,on="commoncolumnname",how="left")
+```
+
+Right Merge
+```
+newdf=df1.merge(df2,,how="right",left_on="leftcolumnname", right_on="rightcolumnname")
+```
