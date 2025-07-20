@@ -66,5 +66,72 @@ df.value_counts()
 df.value_counts(sort=True)  
 df.value_counts(normalize=True)
 df.value_counts().sort_values(ascending=True)
+```
+## groupby
+```
+groupby('c1')['c2']
+groupby(['c1','c2'])[['c1','c2']]
+```
+
+## Pivot Tables
+```
+pivot_table(values='c1',index='c2',aggfunc="median")
+pivot_table(values='c1',index='c2',aggfunc=['mean','median'])
+pivot_table(values='c1',index='c21',columns="c22",fill_value=0, margin=True)
+```
+margin=True represents to add mean of those rows.
+
+## Explicit indexes
+
+```
+df.columns
+df.index
+```
+### Seting the column name as index
+```
+df.set_index('name')
+df.set_index(['name','color'])
+df.reset_index()
+df.reset_index(drop=True)
+df.sort_index()
+df.sort_index(level='name')
+df.sort_index(level=['name','color'],ascending=[True,False])
+df.loc[cities] ---- here cities = ['USA','India']
+df.iloc
+df.
+```
+
+## slicing and subsetting using loc and iloc
+
+### Slicing
+```
+df[:2]
+df[2:]
+df[2:5]
+df[:]
+```
+### subsetting
+```
+df.set_index(level=['name','color']).sort_index()
+df.loc['Arjun':'Nice']   --- outer index level
+```
+---here, we can perform the indicies only after the sort and it will slic throught the names from Arjun(A) to Nice(until N of this names)
+```
+df.loc['red','pink'] --- inner index level
+```
+--- here, it provide an empty dataframe without throught any error
+
+slicing columns using loc
+slice twice- rows and columns
+```
+df.loc[("outer name1","inner name1"):("outername2","innername2"),"columnname1":"columname2"]
+```
+
+slicing using index iloc
+```
+df.iloc["rn":"rn","cn":"cn"]
+```
+
+
 
 
