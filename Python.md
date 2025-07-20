@@ -132,6 +132,76 @@ slicing using index iloc
 df.iloc["rn":"rn","cn":"cn"]
 ```
 
+## Visualing your data
 
+### Histogram
 
+```
+import maltplotlib.pyplot as plt
+df['weight'].hist()
+plt.show()
+```
+bins & Bars
 
+```
+df['weight].hist(bins=20)
+df['weight'].hist(kind='bar',title = " mean weight")
+
+df.plot(x='date',y='weight',kind='line',rot=45,)
+df.show()
+
+for scatter - kind='scatter'
+alpha=0.7
+plt.legend(['M','F'])
+
+```
+##  Missing Values
+
+```
+df.isna()
+df.isna().any() -- using value atleast one in the column
+df.isna().sum() -- sum of all the missing values in the column
+
+df.isna.sum().plot(kind='bar')
+show.plt()
+
+df.dropna() -drop all missing values
+df.fillna(0) --  fill missing values
+```
+
+## Creating a data frame
+
+```
+two ways of creating a datafram - row by row and column by column
+
+dictionaries -
+dict = {"key1":value1,
+        "key2":value2,
+        "key3":value3}
+
+row by row
+
+list_of_dict = [
+    {"name":"hello world","salary":100000},
+    {"name":"abc","salary":800000}
+    ]
+
+column by column
+
+dict_oflist =
+    {
+        "name":["hello world","abc"],
+        "salary":[100000,800000]
+    }
+
+new_df = df.DataFrame(dict)
+```
+
+## Reading and Writing CSV Files
+
+```
+df1  = pd.read_csv("hello.csv")
+df1.to_csv("hello.csv")
+```
+
+Performing different kinds of operations using combination of different functions and methods.....
