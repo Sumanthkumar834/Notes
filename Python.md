@@ -98,7 +98,10 @@ df.sort_index(level='name')
 df.sort_index(level=['name','color'],ascending=[True,False])
 df.loc[cities] ---- here cities = ['USA','India']
 df.iloc
-df.
+```
+setting the index while accessing a csv file
+```
+df = pd.read_csv("hello.csv",index_col=['name'])
 ```
 
 ## slicing and subsetting using loc and iloc
@@ -194,7 +197,7 @@ dict_oflist =
         "salary":[100000,800000]
     }
 
-new_df = df.DataFrame(dict)
+new_df = pd.DataFrame(dict)
 ```
 
 ## Reading and Writing CSV Files
@@ -228,3 +231,18 @@ Right Merge
 ```
 newdf=df1.merge(df2,,how="right",left_on="leftcolumnname", right_on="rightcolumnname")
 ```
+Outer Join
+```
+newdf=df1.merge(df2,how="outter")
+```
+
+Self Join/Merge
+```
+newdf=df.merge(df,left_on='c1',right_on='c2',suffixes=('_left','_right'))
+```
+Merging on Indexes
+```
+newdf=df1.merge(df2,how='inner',left_on='c1',right_on='c2',right_index=True,left_index=True,suffix('_leftc','_rightc'))
+```
+
+## Filtering the joins
