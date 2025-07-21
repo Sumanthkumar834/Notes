@@ -254,7 +254,7 @@ pd.concat([inv_jan,inv_feb,inv_march])
 ```
 pd.concat([inv_jan,inv_feb,inv_march],ignore_index=True)
 ```
-###setting labels to original tables
+### setting labels to original tables
 ```
 pd.concat([inv_jan,inv_feb,inv_march],ignore_index=False, keys=['JAN','FEB','MARCH'])
 ```
@@ -274,6 +274,7 @@ merge the tables - join
 df1.merge(df2,on='columnname',validate='one_to_one')
 ```
 through an error if the relation between df1 and df2 is not one to one relationship.
+
 similarly, we have --  one_to_many, many_to_one, many_to_many.
 
 
@@ -282,6 +283,7 @@ Concat the tables
 pd.concat([inv_jan,inv_feb],verify_integrity=True)
 ```
 it through an error if there is any common index number in both the table.
+
 if it is set of Flase it doesnt through any error.
 
 ## merge_ordered()
@@ -311,4 +313,79 @@ melt methos used to change wide to long format
 ```
 social_fin_tall=soical_fin.melt(id_vars=['finanical','company'],value_vars=['2018','2017'])
 ```
+
+## Statistics
+
+* study of collecting and analyzing the data
+* summary statistics is about summary of the data.
+* statistics provide different kinds of answer to the question we have based on what of data we are dealing with.
+
+Type of statistics data -  Descriptive statistics(describe and summarize the data) and inferential statitics(based on the sample data we define it to a population).
+
+Type of data - numeric(quantitative) - continuous data (measured- speed)and discrete data(counted- number of bottles) and categorial(qualitative) Data -- normial(unordered- married/unmarried) and oridnal(ordered - strong agree, agree, disagree, )
+
+## measures of center
+```
+np.mean(df['columnname'])
+```
+
+mean.median, mode
+
+mode is usually used for categorial data
+
+if you think there are outliners or the graph is left skewed or right skewed use median 
+
+## Spread sheet
+variance - calculate the distance from each data point to mean and square  the each data point and add altogether. finally divided by sum of data point -1.
+
+unit is square.
+
+The Higher the variance - the wider the spred sheet is..
+```
+np.var(df['columname'],ddof=1)
+```
+Standard Deviation - square route of variance.
+```
+np.std(df['columnname'],ddof=1)
+```
+Mean Absolute deviation
+```
+np.abs(sd['columnname'],ddof=1)
+```
+
+std square the distances, penalizing the longer than the shorter ones, while the abs penalizes all the distance equally.
+
+
+Qunatiles(percentiles)
+```
+np.quantiles(animals['sleep'],0.5) 
+```
+- assuming the answer is 10 then 50% of the animal sleep less than 10 hrs and other 50% more than 10hrs..
+
+Quartiles
+```
+np.quantiles(animals['sleep'],[0,0.25,0.5,0.75,1])
+```
+
+Quantiles using np.linespace()
+```
+np.quantile(animals['sleep'],np..linspace(0,1,5))
+
+i.e
+np.linespace(start,stop,intervals)
+```
+
+Interquartile range(IQR) - distance between 25% and 75% 
+```
+from spicy.stats import iqr
+iqr(animals['sleep'])
+```
+
+Outliners
+It is a outliners -
+data < Q1 -1.5 * iqr
+data > Q3 +1.5 * iqr
+
+
+all these statitics can be calculated using describe()
 
