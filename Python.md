@@ -245,4 +245,47 @@ Merging on Indexes
 newdf=df1.merge(df2,how='inner',left_on='c1',right_on='c2',right_index=True,left_index=True,suffix('_leftc','_rightc'))
 ```
 
-## Filtering the joins
+## connecting to tables vertically 
+## Basic Concatenation
+```
+pd.concat([inv_jan,inv_feb,inv_march])
+```
+### Ignore the index if there is not valuable info
+```
+pd.concat([inv_jan,inv_feb,inv_march],ignore_index=True)
+```
+###setting labels to original tables
+```
+pd.concat([inv_jan,inv_feb,inv_march],ignore_index=False, keys=['JAN','FEB','MARCH'])
+```
+### Concat tables if we have different columnnames
+```
+pd.concat([inv_jan,inv_feb],join='inner) 
+```
+-- this will ignore the additional columns
+```
+pd.concat([inv_jan,inv_feb],sort=True)
+```
+ -- adds the additional column to, the rest values of differnt table would be nan
+
+## Verfying integirity
+merge the tables - join
+``` 
+df1.merge(df2,on='columnname',validate='one_to_one')
+```
+through an error if the relation between df1 and df2 is not one to one relationship.
+similarly, we have --  one_to_many, many_to_one, many_to_many.
+
+
+Concat the tables
+```
+pd.concat([inv_jan,inv_feb],verify_integrity=True)
+```
+it through an error if there is any common index number in both the table.
+if it is set of Flase it doesnt through any error.
+
+## merge_ordered()
+```
+pd.merge_ordered(df1,df2,on='columnname', suffixes=('_left','_right'), fill_method='ffill')
+```
+usually used while dealing with time series data. farward fill is quite usefull
