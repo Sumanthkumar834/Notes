@@ -288,4 +288,27 @@ if it is set of Flase it doesnt through any error.
 ```
 pd.merge_ordered(df1,df2,on='columnname', suffixes=('_left','_right'), fill_method='ffill')
 ```
-usually used while dealing with time series data. farward fill is quite usefull
+usually used while dealing with time series data. farward fill is quite usefull for missing values.
+
+## merge as_of - similar to merge_ordered left join
+
+```
+pd.merge_asof(visa,ibm,on=['date_time'],suffixes=('_visa','_ibm'),direction='forward')
+```
+this merge usually used in times series data- like transactions. we have another value to direction include - nearest.
+
+## Selecting date with query()
+```
+stocks.query('nike>90 and disney<140')
+```
+
+we can also use or operator and <,>,== operator other column condition similar to SQL.
+
+## Reshaping data with .melt()
+
+wide format vs long format
+melt methos used to change wide to long format
+```
+social_fin_tall=soical_fin.melt(id_vars=['finanical','company'],value_vars=['2018','2017'])
+```
+
