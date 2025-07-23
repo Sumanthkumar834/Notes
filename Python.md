@@ -383,9 +383,56 @@ iqr(animals['sleep'])
 
 Outliners
 It is a outliners -
+```
 data < Q1 -1.5 * iqr
 data > Q3 +1.5 * iqr
-
-
+```
 all these statitics can be calculated using describe()
+
+## what are the chances.
+
+```
+sales.sample(5,replace=True)
+```
+
+## Discrete Distributions
+# Out of Subject
+
+## Building a Model
+y is the target variable
+X is the features varaibles used to predict the value of y
+
+```
+y=df.targetcolumnname
+df_features = ['c1','c2','c3','c4']
+X=df[df_features]
+```
+```
+df_model=DecisionTreeRegressor(random_sate=1)
+df_model.fit(X,y)
+```
+
+spliting the model to understand the accuracy of the model
+```
+from sklearn.model_selection import train_test_split
+train_X,val_X,train_y,val_y=train_test_split(X,y,random_state=1)
+```
+
+Calculation the mean absolute method to check the difference in price/values
+```
+from sklearn.metrics import mean_absolute_error
+val_mae = mean_absolute_error(val_y,val_predictions)
+```
+
+Due to underfitting and overfitting values present the dataset.. we calculate the absolute mean error for different leaf level.
+
+```
+for max_leaf_nodes in [5,50,500,5000]:
+    my_mae = get_ma(max_leaf_nodes,train_X,val_X,train_y,val_y)
+    print(max_leaf_nodes +"---" + my_mae)
+```
+the one with the least mae will the best leaf level for this dataset to avoid under and over fitting.
+
+final_model = DecisionTreeRegressor(max_leaf_nodes=best_tree_size, random_state=1)
+
 
